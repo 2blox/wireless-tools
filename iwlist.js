@@ -183,7 +183,7 @@ function parse_scan(show_hidden, callback) {
  * @param {function} callback The callback function.
  * @example
  *
- * var iwlist = require('wireless-tools/iwlist');
+ * var iwlist = require('@2blox/wireless-tools/iwlist');
  *
  * iwlist.scan('wlan0', function(err, networks) {
  *   console.log(networks);

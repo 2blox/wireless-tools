@@ -49,7 +49,7 @@ var wpa_supplicant = module.exports = {
  * @returns {process} The child process.
  * @example
  *
- * var wpa_supplicant = require('wireless-tools/wpa_supplicant');
+ * var wpa_supplicant = require('@2blox/wireless-tools/wpa_supplicant');
  *
  * wpa_supplicant.disable('wlan0', function(err) {
  *   // disconnected from wireless network
@@ -74,7 +74,7 @@ function disable(interface, callback) {
  * @returns {process} The child process.
  * @example
  *
- * var wpa_supplicant = require('wireless-tools/wpa_supplicant');
+ * var wpa_supplicant = require('@2blox/wireless-tools/wpa_supplicant');
  *
  * var options = {
  *   interface: 'wlan0',

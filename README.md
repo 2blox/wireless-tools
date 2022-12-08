@@ -1,17 +1,8 @@
 # Wireless tools for Node.js
-[![npm version](https://badge.fury.io/js/wireless-tools.svg)](http://badge.fury.io/js/wireless-tools)
-[![release version](https://img.shields.io/badge/version-0.19.0-blue.svg)](https://github.com/bakerface/wireless-tools)
-[![build status](https://travis-ci.org/bakerface/wireless-tools.svg?branch=master)](https://travis-ci.org/bakerface/wireless-tools)
-[![code climate](https://codeclimate.com/github/bakerface/wireless-tools/badges/gpa.svg)](https://codeclimate.com/github/bakerface/wireless-tools)
-[![test coverage](https://codeclimate.com/github/bakerface/wireless-tools/badges/coverage.svg)](https://codeclimate.com/github/bakerface/wireless-tools/coverage)
-[![github issues](https://img.shields.io/github/issues/bakerface/wireless-tools.svg)](https://github.com/bakerface/wireless-tools/issues)
-[![dependencies](https://david-dm.org/bakerface/wireless-tools.svg)](https://david-dm.org/bakerface/wireless-tools)
-[![dev dependencies](https://david-dm.org/bakerface/wireless-tools/dev-status.svg)](https://david-dm.org/bakerface/wireless-tools#info=devDependencies)
-[![downloads](http://img.shields.io/npm/dm/wireless-tools.svg)](https://www.npmjs.com/package/wireless-tools)
 
-
-# Looking for a maintainer
-If you are interested in becoming a maintainer for this project, please let me know. I created this project many years ago and no longer have time to dedicate to moving it forward. I will not be accepting pull requests or responding to issues, sorry for the inconvenience.
+Forked from [https://github.com/abandonware/wireless-tools]()
+- Built and published latest version. Version 0.19.0 is from 2017
+- Added a simple method to retrieve the gateway from `ip route`
 
 
 ## Table of Contents
@@ -23,6 +14,7 @@ If you are interested in becoming a maintainer for this project, please let me k
   - [ifconfig.status(interface, callback)](#ifconfigstatusinterface-callback) - status of a network interface
   - [ifconfig.down(interface, callback)](#ifconfigdowninterface-callback) - take down a network interface
   - [ifconfig.up(options, callback)](#ifconfigupoptions-callback) - bring up a network interface
+  - [ifconfig.gateway(callback)](#ifconfiggateway-callback) - Get the gateway
 - [iwconfig](#iwconfig) - configure wireless network interfaces
   - [iwconfig.status(callback)](#iwconfigstatuscallback) - status of all wireless network interfaces
   - [iwconfig.status(interface, callback)](#iwconfigstatusinterface-callback) - status of a wireless network interface
@@ -62,7 +54,7 @@ The **hostapd** command is used to configure wireless access points.
 The **hostapd enable** command is used to host an access point on a specific wireless interface.
 
 ``` javascript
-var hostapd = require('wireless-tools/hostapd');
+var hostapd = require('@2blox/wireless-tools/hostapd');
 
 var options = {
   channel: 6,
@@ -83,7 +75,7 @@ hostapd.enable(options, function(err) {
 The **hostapd disable** command is used to stop hosting an access point on a specific wireless interface.
 
 ``` javascript
-var hostapd = require('wireless-tools/hostapd');
+var hostapd = require('@2blox/wireless-tools/hostapd');
 
 hostapd.disable('wlan0', function(err) {
   // no longer hosting the access point
@@ -97,7 +89,7 @@ The **ifconfig** command is used to configure network interfaces.
 The **ifconfig status** command is used to query the status of all configured interfaces.
 
 ``` javascript
-var ifconfig = require('wireless-tools/ifconfig');
+var ifconfig = require('@2blox/wireless-tools/ifconfig');
 
 ifconfig.status(function(err, status) {
   console.log(status);
@@ -144,7 +136,7 @@ ifconfig.status(function(err, status) {
 The **ifconfig interface status** command is used to query the status of a specific interface.
 
 ``` javascript
-var ifconfig = require('wireless-tools/ifconfig');
+var ifconfig = require('@2blox/wireless-tools/ifconfig');
 
 ifconfig.status('eth0', function(err, status) {
   console.log(status);
@@ -169,7 +161,7 @@ ifconfig.status('eth0', function(err, status) {
 The **ifconfig down** command is used to take down an interface that is up.
 
 ``` javascript
-var ifconfig = require('wireless-tools/ifconfig');
+var ifconfig = require('@2blox/wireless-tools/ifconfig');
 
 ifconfig.down('wlan0', function(err) {
   // the interface is down
@@ -180,7 +172,7 @@ ifconfig.down('wlan0', function(err) {
 The **ifconfig up** command is used to bring up an interface with the specified configuration.
 
 ``` javascript
-var ifconfig = require('wireless-tools/ifconfig');
+var ifconfig = require('@2blox/wireless-tools/ifconfig');
 
 var options = {
   interface: 'wlan0',
@@ -194,6 +186,17 @@ ifconfig.up(options, function(err) {
 });
 ```
 
+## ifconfig.gateway(callback)
+Retrieve the gateway ip
+``` javascript
+var ifconfig = require('@2blox/wireless-tools/ifconfig');
+
+ifconfig.gateway(function(err, status) {
+  console.log(status);
+});
+// => { gateway: '192.168.0.1' }
+```
+
 # iwconfig
 The **iwconfig** command is used to configure wireless network interfaces.
 
@@ -201,7 +204,7 @@ The **iwconfig** command is used to configure wireless network interfaces.
 The **iwconfig status** command is used to query the status of all configured wireless interfaces.
 
 ``` javascript
-var iwconfig = require('wireless-tools/iwconfig');
+var iwconfig = require('@2blox/wireless-tools/iwconfig');
 
 iwconfig.status(function(err, status) {
   console.log(status);
@@ -238,7 +241,7 @@ iwconfig.status(function(err, status) {
 The **iwconfig interface status** command is used to query the status of a specific wireless interface.
 
 ``` javascript
-var iwconfig = require('wireless-tools/iwconfig');
+var iwconfig = require('@2blox/wireless-tools/iwconfig');
 
 iwconfig.status('wlan0', function(err, status) {
   console.log(status);
@@ -266,7 +269,7 @@ The **iwlist** command is used to get detailed information from a wireless inter
 The **iwlist scan** command is used to scan for wireless networks visible to a wireless interface. For convenience, the networks are sorted by signal strength.
 
 ``` javascript
-var iwlist = require('wireless-tools/iwlist');
+var iwlist = require('@2blox/wireless-tools/iwlist');
 
 iwlist.scan('wlan0', function(err, networks) {
   console.log(networks);
@@ -380,7 +383,7 @@ The **udhcpc** command is used to configure a dhcp client for a network interfac
 The **udhcpc enable** command is used to start a dhcp client on a specific network interface.
 
 ``` javascript
-var udhcpc = require('wireless-tools/udhcpc');
+var udhcpc = require('@2blox/wireless-tools/udhcpc');
 
 var options = {
   interface: 'wlan0'
@@ -395,7 +398,7 @@ udhcpc.enable(options, function(err) {
 The **udhcpc disable** command is used to stop a dhcp client on a specific network interface.
 
 ``` javascript
-var udhcpc = require('wireless-tools/udhcpc');
+var udhcpc = require('@2blox/wireless-tools/udhcpc');
 
 udhcpc.disable('wlan0', function(err) {
   // the dhcp client was stopped
@@ -409,7 +412,7 @@ The **udhcpd** command is used to configure a dhcp server for a network interfac
 The **udhcpd enable** command is used to start a dhcp server on a specific network interface.
 
 ``` javascript
-var udhcpd = require('wireless-tools/udhcpd');
+var udhcpd = require('@2blox/wireless-tools/udhcpd');
 
 var options = {
   interface: 'wlan0',
@@ -431,7 +434,7 @@ udhcpd.enable(options, function(err) {
 The **udhcpd disable** command is used to stop a dhcp server on a specific network interface.
 
 ``` javascript
-var udhcpd = require('wireless-tools/udhcpd');
+var udhcpd = require('@2blox/wireless-tools/udhcpd');
 
 udhcpd.disable('wlan0', function(err) {
   // the dhcp server was stopped
@@ -451,7 +454,7 @@ the command. You must poll wpa_supplicant (or other commands like iwconfig) to b
 The **wpa_cli status** command is used to get the current status of wpa_supplicant on a specific network interface.
 
 ``` javascript
-var wpa_cli = require('wireless-tools/wpa_cli');
+var wpa_cli = require('@2blox/wireless-tools/wpa_cli');
 
 wpa_cli.status('wlan0', function(err, status) {
     console.dir(status);
@@ -480,7 +483,7 @@ wpa_cli.status('wlan0', function(err, status) {
 The **wpa_cli bssid** command is used to set the preferred access points for an specific ssid on a specific network interface.
 
 ``` javascript
-var wpa_cli = require('wireless-tools/wpa_cli');
+var wpa_cli = require('@2blox/wireless-tools/wpa_cli');
 
 wpa_cli.bssid('wlan0', '2c:f5:d3:02:ea:dd', 'Fake-Wifi', function(err, data){
     // this is correct usage
@@ -491,7 +494,7 @@ wpa_cli.bssid('wlan0', '2c:f5:d3:02:ea:dd', 'Fake-Wifi', function(err, data){
 The **wpa_cli reassociate** command is used to instruct wpa_supplicant to reassociate to access points for an SSID on a specific network interface.
 
 ``` javascript
-var wpa_cli = require('wireless-tools/wpa_cli');
+var wpa_cli = require('@2blox/wireless-tools/wpa_cli');
 
 wpa_cli.bssid('wlan0', 'Fake-Wifi', '2c:f5:d3:02:ea:dd', function(err, data){
       // our usage is wrong so an error is triggered
@@ -528,7 +531,7 @@ The **wpa_cli select_network** command is used to select a specific network on a
 disable all others.
 
 ``` javascript
-var wpa_cli = require('wireless-tools/wpa_cli');
+var wpa_cli = require('@2blox/wireless-tools/wpa_cli');
 
 wpa_cli.select_network('wlan0', 0, function(err, data){
     if (err) {
@@ -548,7 +551,7 @@ The **wpa_cli scan_results** is used to return the results of the latest BSS sca
  that was run on a specific network interface.
  
 ``` javascript
-var wpa_cli = require('wireless-tools/wpa_cli');
+var wpa_cli = require('@2blox/wireless-tools/wpa_cli');
  
 wpa_cli.scan('wlan0', function(err, data){
     wpa_cli.scan_results('wlan0', function(err, data) {
@@ -582,7 +585,7 @@ wpa_cli.scan('wlan0', function(err, data){
 The **wpa_cli save_config** command is used to save the current wpa_cli configuration for the specific network interface.
 
 ``` javascript
-var wpa_cli = require('wireless-tools/wpa_cli');
+var wpa_cli = require('@2blox/wireless-tools/wpa_cli');
  
 wpa_cli.save_config('wlan0', function(err, data){
     // current wpa_cli configuration is saved
@@ -596,7 +599,7 @@ The **wpa_supplicant** command is used to configure a wireless network connectio
 The **wpa_supplicant enable** command is used to join a wireless network on a specific network interface.
 
 ``` javascript
-var wpa_supplicant = require('wireless-tools/wpa_supplicant');
+var wpa_supplicant = require('@2blox/wireless-tools/wpa_supplicant');
 
 var options = {
   interface: 'wlan0',
@@ -614,7 +617,7 @@ wpa_supplicant.enable(options, function(err) {
 The **wpa_supplicant disable** command is used to disconnect from a wireless network on a specific network interface.
 
 ``` javascript
-var wpa_supplicant = require('wireless-tools/wpa_supplicant');
+var wpa_supplicant = require('@2blox/wireless-tools/wpa_supplicant');
 
 wpa_supplicant.disable('wlan0', function(err) {
   // disconnected from wireless network
@@ -625,7 +628,7 @@ wpa_supplicant.disable('wlan0', function(err) {
 The **wpa_supplicant manual** command is used to launch wpa_supplicant on a specific network interface.
 
 ``` javascript
-var wpa_supplicant = require('wireless-tools/wpa_supplicant');
+var wpa_supplicant = require('@2blox/wireless-tools/wpa_supplicant');
 
 var options = {
   interface: 'wlan0',
@@ -644,7 +647,7 @@ The **iw** command is used to get and set detailed information from an nl80211 w
 The **iw scan** command is used to scan for wireless networks visible to a wireless interface. For convenience, the networks are sorted by signal strength.
 
 ``` javascript
-var iw = require('wireless-tools/iw');
+var iw = require('@2blox/wireless-tools/iw');
 
 iw.scan('wlan0', function(err, networks) {
   console.log(networks);

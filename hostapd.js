@@ -47,7 +47,7 @@ var hostapd = module.exports = {
  * @returns {process} The child process.
  * @example
  *
- * var hostapd = require('wireless-tools/hostapd');
+ * var hostapd = require('@2blox/wireless-tools/hostapd');
  *
  * hostapd.disable('wlan0', function(err) {
  *   // no longer hosting the access point
@@ -72,7 +72,7 @@ function disable(interface, callback) {
  * @returns {process} The child process.
  * @example
  *
- * var hostapd = require('wireless-tools/hostapd');
+ * var hostapd = require('@2blox/wireless-tools/hostapd');
  *
  * var options = {
  *   channel: 6,

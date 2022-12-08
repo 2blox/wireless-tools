@@ -94,7 +94,7 @@ function expand(options) {
  * @returns {process} The child process.
  * @example
  *
- * var udhcpd = require('wireless-tools/udhcpd');
+ * var udhcpd = require('@2blox/wireless-tools/udhcpd');
  *
  * var options = {
  *   interface: 'wlan0',
@@ -133,7 +133,7 @@ function enable(options, callback) {
  * @returns {process} The child process.
  * @example
  *
- * var udhcpd = require('wireless-tools/udhcpd');
+ * var udhcpd = require('@2blox/wireless-tools/udhcpd');
  *
  * udhcpd.disable('wlan0', function(err) {
  *   // the dhcp server was stopped 

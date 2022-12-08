@@ -141,7 +141,7 @@ function parse_status_interface(callback) {
  * @param {function} callback The callback function.
  * @example
  *
- * var iwconfig = require('wireless-tools/iwconfig');
+ * var iwconfig = require('@2blox/wireless-tools/iwconfig');
  *
  * iwconfig.status(function(err, status) {
  *   console.log(status);

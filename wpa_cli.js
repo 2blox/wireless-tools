@@ -254,7 +254,7 @@ function parse_scan_results_interface(callback) {
  * @param {function} callback The callback function.
  * @example
  *
- * var wpa_cli = require('wireless-tools/wpa_cli');
+ * var wpa_cli = require('@2blox/wireless-tools/wpa_cli');
  *
  * wpa_cli.status('wlan0', function(err, status) {
  *     console.dir(status);

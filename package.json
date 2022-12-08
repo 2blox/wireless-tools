@@ -1,10 +1,10 @@
 {
-  "name": "wireless-tools",
-  "version": "0.19.0",
+  "name": "@2blox/wireless-tools",
+  "version": "0.20.1",
   "description": "Wireless tools for Node.js",
   "author": "Christopher M. Baker",
   "license": "MIT",
-  "homepage": "https://github.com/bakerface/wireless-tools",
+  "homepage": "https://github.com/2blox/wireless-tools",
   "main": "wireless-tools.js",
   "keywords": [
     "wireless",
@@ -20,10 +20,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bakerface/wireless-tools.git"
+    "url": "git+https://github.com/2blox/wireless-tools.git"
   },
   "bugs": {
-    "url": "https://github.com/bakerface/wireless-tools/issues"
+    "url": "https://github.com/2blox/wireless-tools/issues"
   },
   "scripts": {
     "test": "istanbul cover node_modules/.bin/_mocha",
@@ -36,7 +36,7 @@
   "devDependencies": {
     "codeclimate-test-reporter": "0.5.1",
     "istanbul": "^0.4.3",
-    "mocha": "9.0.3",
+    "mocha": "^9.2.2",
     "should": "^9.0.2",
     "xo": "0.44.0"
   },

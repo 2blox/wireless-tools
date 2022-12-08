@@ -48,7 +48,7 @@ var udhcpc = module.exports = {
  * @returns {process} The child process.
  * @example
  *
- * var udhcpc = require('wireless-tools/udhcpc');
+ * var udhcpc = require('@2blox/wireless-tools/udhcpc');
  *
  * udhcpc.disable('wlan0', function(err) {
  *   // the dhcp client was stopped
@@ -71,7 +71,7 @@ function disable(interface, callback) {
  * @returns {process} The child process.
  * @example
  *
- * var udhcpc = require('wireless-tools/udhcpc');
+ * var udhcpc = require('@2blox/wireless-tools/udhcpc');
  *
  * var options = {
  *   interface: 'wlan0'

@@ -33,6 +33,7 @@ var child_process = require('child_process');
 var ifconfig = module.exports = {
   exec: child_process.exec,
   status: status,
+  gateway: gateway,
   down: down,
   up: up
 };
@@ -111,6 +112,18 @@ function parse_status_block(block) {
   return parsed;
 }
 
+function parse_gateway_block(block) {
+  var match;
+
+  var parsed = {};
+
+  if ((match = block.match(/default via\s+([^\s]+)/))) {
+    parsed.gateway = match[1].toLowerCase();
+  }
+  return parsed;
+}
+
+
 /**
  * Parses the status for all network interfaces.
  *
@@ -143,6 +156,12 @@ function parse_status_interface(callback) {
     else callback(error, parse_status_block(stdout.trim()));
   };
 }
+function parse_gateway_interface(callback) {
+  return function(error, stdout, stderr) {
+    if (error) callback(error);
+    else callback(error, parse_gateway_block(stdout.trim()));
+  };
+}
 
 /**
  * The **ifconfig status** command is used to query the status of all
@@ -154,7 +173,7 @@ function parse_status_interface(callback) {
  * @param {function} callback The callback function.
  * @example
  *
- * var ifconfig = require('wireless-tools/ifconfig');
+ * var ifconfig = require('@2blox/wireless-tools/ifconfig');
  *
  * ifconfig.status(function(err, status) {
  *   console.log(status);
@@ -206,6 +225,10 @@ function status(interface, callback) {
   }
 }
 
+function gateway(callback) {
+    this.exec('ip route', parse_gateway_interface(callback));
+}
+
 /**
  * The **ifconfig down** command is used to take down an interface that is up.
  *
@@ -216,7 +239,7 @@ function status(interface, callback) {
  * @returns {process} The child process.
  * @example
  *
- * var ifconfig = require('wireless-tools/ifconfig');
+ * var ifconfig = require('@2blox/wireless-tools/ifconfig');
  *
  * ifconfig.down('wlan0', function(err) {
  *   // the interface is down
